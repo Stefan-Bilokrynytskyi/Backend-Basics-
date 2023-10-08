@@ -1,10 +1,11 @@
 'use strict';
 
-let status = 'offline';
-const express = require('express');
-const router = express.Router();
-const { format } = require('date-fns');
+import express from 'express';
+import { format } from 'date-fns';
 
+let status = 'offline';
+
+const router = express.Router();
 router.get('/healthcheck', async (req, res) => {
   try {
     status = 'online';
@@ -19,4 +20,4 @@ router.get('/healthcheck', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

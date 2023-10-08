@@ -1,16 +1,18 @@
 'use strict';
 
-const express = require('express');
+import express from 'express';
+import cors from 'cors';
+import { config } from 'dotenv';
+import router from './routes.js';
+config();
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
-const routes = require('./routes');
+app.use('/', router);
 
-app.use('/', routes);
-
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
