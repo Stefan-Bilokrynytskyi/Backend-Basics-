@@ -1,9 +1,9 @@
-version: '1'
+version: '2'
 services:
   node-app:
-    image: sha256:8fc3a74e6e6985c5140da313115929aca549262e93f4469035d31b6fb8187eb4
+    image: sha256:cac57dce28bc743b90c946b09993fcb9e4d0e03b444d25450610d8abcb881e44
     ports:
-      - '3000:3000'
+      - '3001:3001'
     volumes:
       - ./src:/src
     environment:

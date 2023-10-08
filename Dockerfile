@@ -1,15 +1,10 @@
-
 FROM node
-
 
 WORKDIR /app
 
-
-COPY ./src ./src
+COPY ./src .
 COPY package.json .
 COPY package-lock.json .
-COPY .env .
-
 
 RUN npm install
 
