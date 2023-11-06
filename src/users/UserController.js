@@ -33,4 +33,18 @@ export default class UserController {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+  createUser(req, res) {
+    try {
+      const { username } = req.body;
+      const user = {
+        id: Data.users.length + 1,
+        username,
+      };
+      Data.users.push(user);
+      res.status(200).json(user);
+    } catch (error) {
+      console.error('Error', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
 }
