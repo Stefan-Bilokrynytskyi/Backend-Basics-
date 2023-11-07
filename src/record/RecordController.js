@@ -5,12 +5,12 @@ import Data from '../Data/Data.js';
 export default class RecordController {
   createRecord(req, res) {
     try {
-      const { idUser, idCategory, date, sumOfExpense } = req.body;
+      const { idUser, idCategory, sumOfExpense } = req.body;
       const record = new Record(
         Data.records.length + 1,
         Number(idUser),
         Number(idCategory),
-        date,
+
         sumOfExpense
       );
       Data.records.push(record);
