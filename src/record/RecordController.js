@@ -44,10 +44,9 @@ export default class RecordController {
   getRecords(req, res) {
     try {
       const { user_id, category_id } = req.query;
-      console.log(user_id);
-      console.log(typeof user_id);
+
       let records = Data.records;
-      console.log(typeof records[0].idUser);
+
       if (user_id) {
         records = records.filter((record) => record.idUser === Number(user_id));
       }
