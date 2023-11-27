@@ -10,7 +10,6 @@ export default class RecordController {
         Data.records.length + 1,
         Number(idUser),
         Number(idCategory),
-
         sumOfExpense
       );
       Data.records.push(record);

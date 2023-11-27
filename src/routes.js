@@ -22,4 +22,17 @@ router.get('/record/:id', new RecordController().getRecord);
 router.delete('/record/:id', new RecordController().deleteRecord);
 router.post('/record', new RecordController().createRecord);
 router.get('/record', new RecordController().getRecords);
+router.get('/healthcheck', async (req, res) => {
+  try {
+    status = 'online';
+    const today = new Date();
+    const date = format(today, 'MMMM dd, yyyy');
+    const data = { date, status };
+
+    res.status(200).json(data);
+  } catch (error) {
+    console.error('Error', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 export default router;
