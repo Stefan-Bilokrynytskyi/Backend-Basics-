@@ -14,7 +14,6 @@ export default class UserController {
   getUser(req, res) {
     try {
       const { id } = req.params;
-      console.log(id);
       const data = Data.users.find((user) => user.id === Number(id));
       res.status(200).json(data);
     } catch (error) {
