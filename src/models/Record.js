@@ -1,8 +1,7 @@
-// models/Record.js
-// models/Record.js
-// models/Record.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const User = require('./User');
+const Category = require('./Category');
 
 const Record = sequelize.define(
   'record',
@@ -15,19 +14,53 @@ const Record = sequelize.define(
     idUser: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        isInt: {
+          msg: 'idUser must be an integer',
+        },
+        isExistingUser: async function (value) {
+          const user = await User.findByPk(value);
+          if (!user) {
+            throw new Error('User with the specified idUser does not exist');
+          }
+        },
+      },
     },
     idCategory: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        isInt: {
+          msg: 'idCategory must be an integer',
+        },
+        isExistingCategory: async function (value) {
+          const category = await Category.findByPk(value);
+          if (!category) {
+            throw new Error(
+              'Category with the specified idCategory does not exist'
+            );
+          }
+        },
+      },
     },
     date: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: DataTypes.NOW, // Устанавливаем значение по умолчанию как текущую дату и время
+      defaultValue: DataTypes.NOW,
+      validate: {
+        isDate: {
+          msg: 'Invalid date format',
+        },
+      },
     },
     sumOfExpense: {
       type: DataTypes.FLOAT,
       allowNull: false,
+      validate: {
+        isFloat: {
+          msg: 'sumOfExpense must be a float',
+        },
+      },
     },
   },
   {

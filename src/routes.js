@@ -2,9 +2,9 @@
 
 const express = require('express');
 const { format } = require('date-fns');
-const UserController = require('./users/UserController.js');
-const CategoryController = require('./category/CategoryController.js');
-const RecordController = require('./record/RecordController.js');
+const UserController = require('./controllers/UserController.js');
+const CategoryController = require('./controllers/CategoryController.js');
+const RecordController = require('./controllers/RecordController.js');
 
 let status = 'offline';
 

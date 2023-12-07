@@ -1,7 +1,6 @@
-// models/Category.js
-// models/Category.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const User = require('./User');
 
 const Category = sequelize.define(
   'category',
@@ -14,6 +13,16 @@ const Category = sequelize.define(
     categoryName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'CategoryName cannot be empty',
+        },
+        isString(value) {
+          if (typeof value !== 'string') {
+            throw new Error('CategoryName must be a string');
+          }
+        },
+      },
     },
     idUser: {
       type: DataTypes.INTEGER,
@@ -24,11 +33,21 @@ const Category = sequelize.define(
       },
       onUpdate: 'CASCADE',
       onDelete: 'SET NULL',
+      validate: {
+        isExistingUser: async function (value) {
+          if (value !== undefined) {
+            const user = await User.findByPk(value);
+            if (!user) {
+              throw new Error('User with the specified idUser does not exist');
+            }
+          }
+        },
+      },
     },
   },
   {
-    tableName: 'category', // Вказуємо ім'я таблиці
-    timestamps: false, // Відключаємо автоматичні поля createdAt та updatedAt
+    tableName: 'category',
+    timestamps: false,
   }
 );
 

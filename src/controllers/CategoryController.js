@@ -1,4 +1,4 @@
-const Category = require('../models/Category'); // Убедитесь, что это правильный путь к вашей модели Category
+const Category = require('../models/Category');
 
 class CategoryController {
   async createCategory(req, res) {
@@ -13,7 +13,7 @@ class CategoryController {
       res.status(200).json(newCategory);
     } catch (error) {
       console.error('Error', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: error.message });
     }
   }
 

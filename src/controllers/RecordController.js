@@ -5,15 +5,13 @@ class RecordController {
     try {
       const { idUser, idCategory, sumOfExpense } = req.body;
 
-      // Проверка, существует ли указанная категория
       const category = await Category.findByPk(idCategory);
 
       if (!category) {
-        res.status(404).json({ error: 'Category not found' });
+        res.status(404).json({ error: 'Category does not exist' });
         return;
       }
 
-      // Проверка, если категория приватная, то idUser должен совпадать с создателем категории
       if (category.idUser !== null && category.idUser !== idUser) {
         res.status(403).json({ error: 'Access denied' });
         return;
@@ -28,7 +26,7 @@ class RecordController {
       res.status(200).json(newRecord);
     } catch (error) {
       console.error('Error', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: error.message });
     }
   }
 
@@ -78,7 +76,11 @@ class RecordController {
 
       let records;
 
-      if (user_id) {
+      if (user_id && category_id) {
+        records = await Record.findAll({
+          where: { idUser: user_id, idCategory: category_id },
+        });
+      } else if (user_id) {
         records = await Record.findAll({
           where: { idUser: user_id },
         });

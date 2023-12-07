@@ -1,5 +1,3 @@
-// models/User.js
-// models/User.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
@@ -14,6 +12,16 @@ const User = sequelize.define(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'Username cannot be empty',
+        },
+        isString: (value) => {
+          if (typeof value !== 'string') {
+            throw new Error('Username must be a string');
+          }
+        },
+      },
     },
   },
   {
