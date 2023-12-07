@@ -1,10 +1,10 @@
 'use strict';
 
-import express from 'express';
-import { format } from 'date-fns';
-import UserController from './users/UserController.js';
-import CategoryController from './category/CategoryController.js';
-import RecordController from './record/RecordController.js';
+const express = require('express');
+const { format } = require('date-fns');
+const UserController = require('./users/UserController.js');
+const CategoryController = require('./category/CategoryController.js');
+const RecordController = require('./record/RecordController.js');
 
 let status = 'offline';
 
@@ -35,4 +35,5 @@ router.get('/healthcheck', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-export default router;
+
+module.exports = router;

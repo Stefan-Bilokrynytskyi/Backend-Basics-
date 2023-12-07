@@ -1,9 +1,9 @@
 'use strict';
 
-import express from 'express';
-import cors from 'cors';
-import { config } from 'dotenv';
-import router from './routes.js';
+const express = require('express');
+const cors = require('cors');
+const { config } = require('dotenv');
+const router = require('./routes.js');
 config();
 
 const app = express();
