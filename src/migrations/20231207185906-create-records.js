@@ -1,4 +1,3 @@
-// migrations/YYYYMMDDHHmmss-create-record.js
 'use strict';
 
 module.exports = {
@@ -34,7 +33,7 @@ module.exports = {
         allowNull: false,
       },
       sumOfExpense: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: false,
       },
     });

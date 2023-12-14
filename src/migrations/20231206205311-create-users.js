@@ -1,4 +1,3 @@
-// migrations/YYYYMMDDHHmmss-create-user.js
 'use strict';
 
 module.exports = {
@@ -17,7 +16,7 @@ module.exports = {
         },
       },
       {
-        timestamps: false, // Отключение автоматических временных меток
+        timestamps: false,
       }
     );
   },

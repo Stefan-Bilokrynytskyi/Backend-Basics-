@@ -1,4 +1,3 @@
-// migrations/YYYYMMDDHHmmss-create-category.js
 'use strict';
 
 module.exports = {
@@ -27,7 +26,7 @@ module.exports = {
         },
       },
       {
-        timestamps: false, // Отключение автоматических временных меток
+        timestamps: false,
       }
     );
   },

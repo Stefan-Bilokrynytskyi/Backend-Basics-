@@ -1,4 +1,3 @@
-// users/UserController.js
 'use strict';
 
 const User = require('../models/User');

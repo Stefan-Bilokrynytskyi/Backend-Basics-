@@ -1,11 +1,12 @@
 {
-  "development": {
-    "username": "postgres",
-    "password": "1234",
-    "database": "backend",
-    "host": "localhost",
-    "dialect": "postgres"
-  },
-  "test": {},
-  "production": {}
+  "production": {
+    "url": "postgres://lab3_5e5c_user:BKR55QO5EaWYdr2EKROKXnkC1q3uU1Ym@dpg-cltlmpud3nmc73fl3jm0-a.frankfurt-postgres.render.com:5432/lab3_5e5c",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
+  }
 }
