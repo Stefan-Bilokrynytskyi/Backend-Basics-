@@ -1,8 +1,14 @@
-# 1-Lab
+# 3-Lab
+```
+11 % 3 = 2
+```
+**Користувацькі категорії витрат:**  
+
+Для користувацьких категорій витрат - повинні бути загальні категорії витрат, які видно всім користувачам, та користувацькі, які можуть вказати тільки користувачі, які їх визначили.
 ## The usage
 > Before the usage you need to install the latest version of [Node.js](https://nodejs.org/en/download/)
 1. Clone the repository : ``` https://github.com/Stefan-Bilokrynytskyi/Backend-Basics-/tree/1-lab```
 2. Install dependencies : ```npm install```
-3. Run server: ```npm start```
+3. Run server: ```npm run start```
 ## Deploy 
-https://backend-basics-c9es.onrender.com/healthcheck
+https://lab-3-tmal.onrender.com/healthcheck
