@@ -5,24 +5,58 @@ const { format } = require('date-fns');
 const UserController = require('./controllers/UserController.js');
 const CategoryController = require('./controllers/CategoryController.js');
 const RecordController = require('./controllers/RecordController.js');
+const AuthController = require('./controllers/AuthController.js');
+const authMiddleWare = require('./middleware/authMiddleware.js');
+const { check } = require('express-validator');
 
 let status = 'offline';
 
 const router = express.Router();
-router.get('/users', new UserController().getUsers);
+router.post(
+  '/registration',
+  [
+    check('username', 'Name of user can not be empty').notEmpty(),
+    check('password', 'Password must contain at lest 3 characters').isLength({
+      min: 3,
+    }),
+  ],
+  new AuthController().registration
+);
+router.post('/login', new AuthController().login);
+router.get('/users', authMiddleWare, new UserController().getUsers);
 
-router.get('/user/:id', new UserController().getUser);
-router.delete('/user/:id', new UserController().deleteUser);
-router.post('/user', new UserController().createUser);
-router.get('/category/:id', new CategoryController().getCategory);
-router.get('/categories', new CategoryController().getCategories);
-router.delete('/category/:id', new CategoryController().deleteCategory);
-router.post('/category', new CategoryController().createCategory);
-router.get('/record/:id', new RecordController().getRecord);
-router.delete('/record/:id', new RecordController().deleteRecord);
-router.post('/record', new RecordController().createRecord);
-router.get('/record', new RecordController().getRecords);
-router.get('/healthcheck', async (req, res) => {
+router.get('/user/:id', authMiddleWare, new UserController().getUser);
+router.delete('/user/:id', authMiddleWare, new UserController().deleteUser);
+router.post('/user', authMiddleWare, new UserController().createUser);
+router.get(
+  '/category/:id',
+  authMiddleWare,
+  new CategoryController().getCategory
+);
+router.get(
+  '/categories',
+  authMiddleWare,
+  new CategoryController().getCategories
+);
+router.delete(
+  '/category/:id',
+  authMiddleWare,
+  new CategoryController().deleteCategory
+);
+router.post(
+  '/category',
+  authMiddleWare,
+  new CategoryController().createCategory
+);
+router.get('/record/:id', authMiddleWare, new RecordController().getRecord);
+router.delete(
+  '/record/:id',
+  authMiddleWare,
+  new RecordController().deleteRecord
+);
+router.post('/record', authMiddleWare, new RecordController().createRecord);
+router.get('/record', authMiddleWare, new RecordController().getRecords);
+router.get('/healthcheck', authMiddleWare, async (req, res) => {
   try {
     status = 'online';
     const today = new Date();

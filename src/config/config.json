@@ -1,6 +1,6 @@
 {
   "production": {
-    "url": "postgres://lab3_5e5c_user:BKR55QO5EaWYdr2EKROKXnkC1q3uU1Ym@dpg-cltlmpud3nmc73fl3jm0-a.frankfurt-postgres.render.com:5432/lab3_5e5c",
+    "url": "postgres://stefik:tquXuMPZwTS4WqT92OJMH93QW4tQuVSn@dpg-cm215j21hbls73bt0pt0-a.frankfurt-postgres.render.com:5432/lab4_12qb",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {

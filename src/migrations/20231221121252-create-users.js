@@ -14,6 +14,11 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: false,
         },
+        password: {
+          // Добавлено новое поле
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
       },
       {
         timestamps: false,
