@@ -32,7 +32,7 @@ class AuthController {
 
       const user = await User.create({ username, password: hashPassword });
 
-      return res.json({ username, password });
+      return res.json({ id: user.id, username, password });
     } catch (error) {
       console.error('Error', error);
       res.status(500).json({ error: 'Internal Server Error' });
