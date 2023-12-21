@@ -11,4 +11,4 @@
 2. Install dependencies : ```npm install```
 3. Run server: ```npm run start```
 ## Deploy 
-https://lab-3-tmal.onrender.com/healthcheck
+https://lab-4-9biw.onrender.com/
