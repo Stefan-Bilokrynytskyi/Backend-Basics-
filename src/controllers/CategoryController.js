@@ -3,7 +3,8 @@ const Category = require('../models/Category');
 class CategoryController {
   async createCategory(req, res) {
     try {
-      const { categoryName, idUser } = req.body;
+      const { categoryName } = req.body;
+      const idUser = req.user.id;
 
       const newCategory = await Category.create({
         categoryName,
@@ -38,6 +39,10 @@ class CategoryController {
     try {
       const { id } = req.params;
       const category = await Category.findByPk(id);
+      if (category.idUser !== req.user.id && category.idUser !== null) {
+        res.status(403).json({ error: 'Access denied' });
+        return;
+      }
 
       if (!category) {
         res.status(404).json({ error: 'Category not found' });

@@ -7,6 +7,7 @@ const CategoryController = require('./controllers/CategoryController.js');
 const RecordController = require('./controllers/RecordController.js');
 const AuthController = require('./controllers/AuthController.js');
 const authMiddleWare = require('./middleware/authMiddleware.js');
+const permissionMiddleware = require('./middleware/permissionMiddleware.js');
 const { check } = require('express-validator');
 
 let status = 'offline';
@@ -26,8 +27,12 @@ router.post('/login', new AuthController().login);
 router.get('/users', authMiddleWare, new UserController().getUsers);
 
 router.get('/user/:id', authMiddleWare, new UserController().getUser);
-router.delete('/user/:id', authMiddleWare, new UserController().deleteUser);
-router.post('/user', authMiddleWare, new UserController().createUser);
+router.delete(
+  '/user/:id',
+  [authMiddleWare, permissionMiddleware],
+  new UserController().deleteUser
+);
+
 router.get(
   '/category/:id',
   authMiddleWare,

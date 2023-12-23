@@ -3,7 +3,8 @@ const Record = require('../models/Record');
 class RecordController {
   async createRecord(req, res) {
     try {
-      const { idUser, idCategory, sumOfExpense } = req.body;
+      const { idCategory, sumOfExpense } = req.body;
+      const idUser = req.user.id;
 
       const category = await Category.findByPk(idCategory);
 
@@ -51,7 +52,10 @@ class RecordController {
     try {
       const { id } = req.params;
       const record = await Record.findByPk(id);
-
+      if (record.idUser !== req.user.id) {
+        res.status(403).json({ error: 'Access denied' });
+        return;
+      }
       if (!record) {
         res.status(404).json({ error: 'Record not found' });
         return;
